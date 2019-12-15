@@ -30,7 +30,8 @@ brick.display.text(str(brick.battery.voltage()) + "mV")
 # testing
 # robot.drive_time(150,0,2000)
 # robot.drive_time(0, 50, 7200)
-movement.turn(50, 0, 7200)
+# movement.turn(50, 0, 7200)
+movement.lineFollow(True, 1)
 
 # missions
 # missions.Mission12.brown()
