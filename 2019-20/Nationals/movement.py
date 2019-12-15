@@ -54,6 +54,9 @@ def move(steering, speed, distance, stop: bool, correct: bool):
     if steering == 0 and correct:
       correctRotation(distance)
 
+def turn(steering, speed, time):
+  robot.drive_time(speed, steering, time)
+
 def correctRotation(distance):
   left_motor_degrees_remaining = abs(left_motor.angle()) - distanceToAngle(distance)
   right_motor_degrees_remaining = abs(right_motor.angle()) - distanceToAngle(distance)
