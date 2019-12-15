@@ -82,8 +82,8 @@ def lineFollow(forward: bool, perfect_line_threshold: int):
   integral = 0
   derivative = 0
   kp = 1.2
-  ki = 0.0075
-  kd = 20
+  ki = 0 #0.0075
+  kd = 0 #20
   perfect_steering = 0
   
   while run:

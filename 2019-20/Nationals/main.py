@@ -11,15 +11,15 @@ from pybricks.robotics import DriveBase
 import movement, missions
 
 # test beeps
-brick.sound.beep(1500, 500, 5)
-brick.sound.beep(750, 500, 5)
+brick.sound.beep(1500, 200, 50)
+brick.sound.beep(750, 200, 50)
 
 # check current
 if brick.battery.current() < 150:
-  brick.sound.beep(1500, 1000, 5)
+  brick.sound.beep(1500, 1000, 100)
 # check voltage
 if brick.battery.voltage() < 7000:
-  brick.sound.beep(750, 1000, 5)
+  brick.sound.beep(750, 1000, 100)
 # display current & voltage in console and on brick's screen
 print(str(brick.battery.current()) + "mA")
 print(str(brick.battery.voltage()) + "mV")
@@ -31,7 +31,7 @@ brick.display.text(str(brick.battery.voltage()) + "mV")
 # robot.drive_time(150,0,2000)
 # robot.drive_time(0, 50, 7200)
 # movement.turn(50, 0, 7200)
-movement.lineFollow(True, 1)
+movement.lineFollow(True, 0)
 
 # missions
 # missions.Mission12.brown()
