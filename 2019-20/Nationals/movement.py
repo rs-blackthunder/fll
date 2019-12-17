@@ -40,26 +40,12 @@ def accelerate(start_power, final_power, delay, distance, speed_increment, stop:
     if correct:
       correctRotation(distance)
 
-def move(steering, speed, amount, stop: bool, correct: bool):
-  # left_motor.reset_angle(0)
-  # right_motor.reset_angle(0)
-  # robot.drive(speed, steering)
-  # while (angleToDistance(abs(left_motor.angle())) < amount and angleToDistance(abs(right_motor.angle())) < amount):
-  #   wait(10)
-  # if stop:
-  #   robot.stop(Stop.BRAKE)
-  #   if steering == 0 and correct:
-  #     correctRotation(amount)
-
+def move(steering, speed, amount):
   # speed is in mm/s and steering is in degrees/s so time can be calculated
-  if speed > steering:
-    time = amount / speed
+  if speed != 0:
+    time = abs(amount / speed * 1000)
   else:
-    time = amount / steering
-  robot.drive_time(speed, steering, time)
-  # TODO: now turn() isn't needed??
-
-def turn(steering, speed, time):
+    time = abs(amount / steering * 1000)
   robot.drive_time(speed, steering, time)
 
 def correctRotation(distance):
@@ -75,26 +61,25 @@ def correctRotation(distance):
     right_motor.run_angle(5, right_motor_degrees_remaining, Stop.HOLD)
 
 def lineFollow(forward: bool, perfect_line_threshold: int):
-  run = True
   speed = 50 if forward else -50
   error = 0
   last_error = 0
   integral = 0
   derivative = 0
-  kp = 1.2
-  ki = 0 #0.0075
-  kd = 0 #20
+  kp = 0.6
+  ki = 0.02
+  kd = 0.001 #0.5
   perfect_steering = 0
   
-  while run:
+  while True:
     error = left_colour_sensor.reflection() - right_colour_sensor.reflection()
     integral += error
     derivative = error - last_error
     steering = error * kp + integral * ki + derivative * kd
-    if (-2 < steering < 2 and perfect_line_threshold != 0):
+    if (perfect_line_threshold != 0 and -2 < steering < 2):
       perfect_steering += 1
       if (perfect_line_threshold <= perfect_steering):
-        run = False
+        break
     else:
       robot.drive(speed, steering)
     last_error = error
