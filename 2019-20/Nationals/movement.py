@@ -8,6 +8,9 @@ from pybricks.parameters import (Port, Stop, Direction)
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
+# to retrieve name of caller frame name
+import inspect
+
 def angleToDistance(angle):
   return angle / 360 * 196.035381584
 
@@ -84,8 +87,7 @@ def lineFollow(forward: bool, threshold):
     ###
     print("steering:", steering)
     ###
-    current_frame = inspect.currentframe()
-    caller_name = inspect.getouterframes(current_frame, 2)[1][3]
+    caller_name = inspect.stack()[1][3]
     if (threshold != 0 and -2 < steering < 2 and caller_name != "__init__"):
       perfect_steering += 1
       if (threshold <= perfect_steering):
