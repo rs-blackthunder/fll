@@ -14,12 +14,16 @@ def angleToDistance(angle):
 def distanceToAngle(distance):
   return distance * 360 / 196.035381584
 
+def resetAngles():
+  left_motor.reset_angle(0)
+  right_motor.reset_angle(0)
+
 def accelerate(start_power, final_power, delay, distance, speed_increment, stop: bool, correct: bool):
+  resetAngles()
   current_power = start_power
   if speed_increment == 0:
     speed_increment = abs(final_power - start_power) / distance * 8
-  left_motor.reset_angle(0)
-  right_motor.reset_angle(0)
+  resetAngles()
   try:
     direction_coefficient = final_power / abs(final_power)
   except ZeroDivisionError:
@@ -41,6 +45,7 @@ def accelerate(start_power, final_power, delay, distance, speed_increment, stop:
       correctRotation(distance)
 
 def move(steering, speed, amount):
+  resetAngles()
   # speed is in mm/s and steering is in degrees/s so time can be calculated
   if speed != 0:
     time = abs(amount / speed * 1000)

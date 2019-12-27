@@ -33,4 +33,6 @@ brick.display.text(str(brick.battery.voltage()) + "mV")
 
 ########## MISSIONS #########
 # missions.Mission12.brown()
-missions.Mission9()
+# missions.Mission9()
+missions.Mission2()
+# movement.move(-10, 0, 54)
