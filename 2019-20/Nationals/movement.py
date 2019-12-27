@@ -65,7 +65,7 @@ def correctRotation(distance):
     right_motor.reset_angle(0)
     right_motor.run_angle(5, right_motor_degrees_remaining, Stop.HOLD)
 
-def lineFollow(forward: bool, perfect_line_threshold: int):
+def lineFollow(forward: bool, threshold):
   speed = 50 if forward else -50
   error = 0
   last_error = 0
@@ -73,7 +73,7 @@ def lineFollow(forward: bool, perfect_line_threshold: int):
   derivative = 0
   kp = 0.6
   ki = 0.02
-  kd = 0.001 #0.5
+  kd = 0.001
   perfect_steering = 0
   
   while True:
@@ -81,10 +81,17 @@ def lineFollow(forward: bool, perfect_line_threshold: int):
     integral += error
     derivative = error - last_error
     steering = error * kp + integral * ki + derivative * kd
-    if (perfect_line_threshold != 0 and -2 < steering < 2):
+    ###
+    print("steering:", steering)
+    ###
+    current_frame = inspect.currentframe()
+    caller_name = inspect.getouterframes(current_frame, 2)[1][3]
+    if (threshold != 0 and -2 < steering < 2 and caller_name != "__init__"):
       perfect_steering += 1
-      if (perfect_line_threshold <= perfect_steering):
+      if (threshold <= perfect_steering):
         break
+    elif (caller_name == "__init__" and steering >= threshold):
+      break
     else:
       robot.drive(speed, steering)
     last_error = error

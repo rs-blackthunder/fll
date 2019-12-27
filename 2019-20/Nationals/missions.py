@@ -8,14 +8,21 @@ from pybricks.tools import print, wait, StopWatch
 
 import movement
 
+def resetAngles():
+  left_attachment.reset_angle(0)
+  right_attachment.reset_angle(0)
+
 class Mission2:
   def __init__(self):
-    movement.accelerate(0, 150, 0.01, 310, 10, True, True)
-    # more than 90 degrees to account for drag from attachment
-    movement.move(-10, 0, 150)
-    movement.accelerate(0, 150, 0.01, 580, 10, True, False)
-    left_attachment.reset_angle(0)
-    right_attachment.reset_angle(0)
+    movement.move(10, 0, 30)
+    # movement.move(0, 150, 350)
+    movement.accelerate(0, 150, 0.01, 300, 10, False, False)
+    movement.accelerate(150, 0, 0.01, 112, 10, True, True)
+    movement.move(-10, 0, 31)
+    # movement.move(0, 150, 250)
+    movement.accelerate(0, 150, 0.01, 100, 10, False, False)
+    movement.accelerate(150, 0, 0.01, 84, 10, True, False)
+    resetAngles()
     wait(1500)
     angle_to_turn = 220
     for i in range(2):
@@ -32,10 +39,33 @@ class Mission2:
 
 class Mission9:
   def __init__(self):
-    # left_attachment.run_until_stalled(-90)
-    # right_attachment.run_until_stalled(-90)
     movement.move(0, 100, 350)
-    movement.lineFollow(True, 0)
+    movement.lineFollow(True, 20)
+    movement.move(-10, 0, 75)
+    movement.move(0, 150, 200)
+    movement.move(10, 0, 75)
+    movement.move(0, 50, 300)
+    movement.move(10, 0, 20)
+    resetAngles()
+    left_attachment.run_angle(300, 220, Stop.BRAKE, False)
+    right_attachment.run_angle(300, 220, Stop.BRAKE, True)
+    movement.move(-10, 0, 20)
+    left_attachment.run_angle(-300, 220, Stop.BRAKE, False)
+    right_attachment.run_angle(-300, 220, Stop.BRAKE, True)
+    movement.move(-10, 0, 20)
+    left_attachment.run_angle(300, 220, Stop.BRAKE, False)
+    right_attachment.run_angle(300, 220, Stop.BRAKE, True)
+    movement.move(10, 0, 40)
+    left_attachment.run_angle(-300, 500, Stop.BRAKE, False)
+    right_attachment.run_angle(-300, 500, Stop.BRAKE, True)
+    movement.move(0, -150, 200)
+    movement.move(10, 0, 30)
+    movement.move(0, 150, 400)
+    movement.move(0, -150, 100)
+    movement.move(-10, 0, 70)
+    movement.move(0, -150, 600)
+    movement.move(-10, 0, 15)
+    movement.move(0, -150, 700)
 
 class Mission12:
   def brown():
