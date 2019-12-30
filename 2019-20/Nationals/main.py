@@ -27,44 +27,52 @@ brick.display.text(str(brick.battery.current()) + "mA", (60, 50))
 brick.display.text(str(brick.battery.voltage()) + "mV")
 
 ########## TESTING ##########
-# movement.lineFollow(True, 0)
-# movement.move(50, 0, 360)
 
-
-########## MISSIONS #########
 # missions.Mission12.brown()
 # missions.Mission9()
 # missions.Mission2()
 # movement.move(-10, 0, 54)
 
-# Using brick buttons and colour sensors to run missions.
-port = None 
-coloursensor = ColorSensor(port) # I don't know the port, change port/ change port parameter to be the port of the colour sensor.
+#############################
 
-# Attachments that do only one mission (Mission 1, 6, 7 or 8)
-if coloursensor.color() == Color.RED: # Change this to the colour being added to the attachment
-  # Mission 6/7/8 when coded
-  # Display "Mission 6/7/8" so we know what has been detected 
-  brick.display.text(str("Mission 6/7/8")
-  # Change the missions being executed so that they are in chronological order. I have tried to make it so that the first mission
-  # gets executed by 'UP' and then the next ones are in a clockwise motion (i.e. UP -> RIGHT -> DOWN -> LEFT)
+# use brick buttons & a colour sensor to choose missions
+colour_sensor = ColorSensor(Port.S3)
+
+# wait until button is pressed
+while not (any(brick.buttons())):
+  wait(10)
+
+######## attachments that do only one mission (missions 1, 6 & 7) ########
+
+if colour_sensor.color() == Color.RED:
+  # display mission numbers so we know what has been detected
+  brick.display.text(str("Missions 1, 6, 7 & 8"), (60, 50))
+  # wait until button is pressed
+  while not (any(brick.buttons())):
+    wait(10)
+  # clockwise is probable order (i.e. UP -> RIGHT -> DOWN -> LEFT)
   if Button.UP in brick.buttons():
-    pass # Mission 6
+    pass # mission 6
   elif Button.RIGHT in brick.buttons():
-    pass # Mission 7
+    pass # mission 7
   elif Button.DOWN in brick.buttons():
-    pass # Mission 8
+    pass # mission 8
   elif Button.LEFT in brick.buttons():
-    pass # Mission 1
-  elif Button.MIDDLE in brick.buttons(): # In case the colour sensor detects wrongly
+    pass # mission 1
+  elif Button.MIDDLE in brick.buttons():  # in case colour sensor detects wrong colour
     break
 
-# Attachments that do a few missions. (Missions 2+9, 3+4(if being done), 12)
-elif coloursensor.color() == Color.GREEN: # Same as above, change this to the colour being added to the attachment
-  # Mission 12.
-  # Display "Mission 12" so we know what has been detected 
-  # Same as above, the individual stacks get executed in chronological order starting from UP and then in a clockwise motion. 
+##########################################################################
+
+
+
+### attachments that do more than one mission (missions 2/9, 3/4 & 12) ###
+
+# mission 12
+elif colour_sensor.color() == Color.GREEN:
+  # display mission number so we know what has been detected
   brick.display.text(str("Mission 12")
+  # clockwise is probable order (i.e. UP -> RIGHT -> DOWN -> LEFT)
   if Button.UP in brick.buttons():
     missions.Mission12.blue()
   elif Button.RIGHT in brick.buttons():
@@ -73,23 +81,18 @@ elif coloursensor.color() == Color.GREEN: # Same as above, change this to the co
     missions.Mission12.white()
   elif Button.LEFT in brick.buttons():
     missions.Mission12.red()
-  elif Button.MIDDLE in brick.buttons(): # In case the colour sensor detects wrongly
+  elif Button.MIDDLE in brick.buttons():  # in case colour sensor detects wrong colour
     break
 
-elif coloursensor.color() == Color.BLUE: 
-  # Mission 2 + 9
-  # Display "Mission 2/9" so we know what has been detected 
-  brick.display.text(str("Mission 2/9")                   
+# mission 2 & 9
+elif colour_sensor.color() == Color.BLUE:
+  # display mission numbers so we know what has been detected
+  brick.display.text(str("Mission 2/9")
   if Button.LEFT in brick.buttons():
     missions.Mission2()
   elif Button.RIGHT in brick.buttons():
     missions.Mission9()
-  elif Button.MIDDLE in brick.buttons(): # In case the colour sensor detects wrongly
+  elif Button.MIDDLE in brick.buttons():  # in case colour sensor detects wrong colour
     break
 
-# Colours need to be added to the attachments. 
-# Code needs to be checked in different light levels, may detect differently in different enviroments.
-# Maybe add a fallback manual selection if the light sensor does not end up working
-
-
-
+##########################################################################
