@@ -29,11 +29,13 @@ brick.display.text(str(brick.battery.voltage()) + "mV")
 ########## TESTING ##########
 
 # missions.Mission12.brown()
-# missions.Mission9()
+missions.Mission9()
 # missions.Mission2()
 # movement.move(-10, 0, 54)
 
 #############################
+
+exit()
 
 # use brick buttons & a colour sensor to choose missions
 colour_sensor = ColorSensor(Port.S3)
@@ -72,7 +74,7 @@ while True:
   # mission 12
   elif colour_sensor.color() == Color.GREEN:
     # display mission number so we know what has been detected
-    brick.display.text(str("Mission 12")
+    brick.display.text(str("Mission 12"))
     # clockwise is probable order (i.e. UP -> RIGHT -> DOWN -> LEFT)
     if Button.UP in brick.buttons():
       missions.Mission12.blue()
@@ -88,7 +90,7 @@ while True:
   # mission 2 & 9
   elif colour_sensor.color() == Color.BLUE:
     # display mission numbers so we know what has been detected
-    brick.display.text(str("Mission 2/9")
+    brick.display.text(str("Mission 2/9"))
     if Button.LEFT in brick.buttons():
       missions.Mission2()
     elif Button.RIGHT in brick.buttons():

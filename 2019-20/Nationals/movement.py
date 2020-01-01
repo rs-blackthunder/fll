@@ -8,9 +8,6 @@ from pybricks.parameters import (Port, Stop, Direction)
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
-# to retrieve name of caller frame name
-import inspect
-
 def angleToDistance(angle):
   return angle / 360 * 196.035381584
 
@@ -68,7 +65,7 @@ def correctRotation(distance):
     right_motor.reset_angle(0)
     right_motor.run_angle(5, right_motor_degrees_remaining, Stop.HOLD)
 
-def lineFollow(forward: bool, threshold):
+def lineFollow(forward: bool, threshold, caller: int):
   speed = 50 if forward else -50
   error = 0
   last_error = 0
@@ -78,26 +75,29 @@ def lineFollow(forward: bool, threshold):
   ki = 0.02
   kd = 0.001
   perfect_steering = 0
+  left_motor.reset_angle(0)
+  right_motor.reset_angle(0)
   
   while True:
     error = left_colour_sensor.reflection() - right_colour_sensor.reflection()
     integral += error
     derivative = error - last_error
     steering = error * kp + integral * ki + derivative * kd
-    ###
-    print("steering:", steering)
-    ###
-    caller_name = inspect.stack()[1][3]
-    if (threshold != 0 and -2 < steering < 2 and caller_name != "__init__"):
+    if (threshold != 0 and -2 < steering < 2 and caller != 9):
       perfect_steering += 1
       if (threshold <= perfect_steering):
         break
-    elif (caller_name == "__init__" and steering >= threshold):
-      break
     else:
       robot.drive(speed, steering)
+    if (caller == 9 and left_motor.angle() > 600):
+      if (steering >= threshold):
+        print("POSITION 1, steering", steering)
+        left_motor.reset_angle(0)
+        right_motor.reset_angle(0)
+        break
     last_error = error
   robot.stop(Stop.HOLD)
+  return steering
 
 left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.D, Direction.COUNTERCLOCKWISE)
