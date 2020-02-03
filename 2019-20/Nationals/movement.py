@@ -52,6 +52,7 @@ def move(steering, speed, amount):
   else:
     time = abs(amount / steering * 1000)
   robot.drive_time(speed, steering, time)
+  print("moved, left", left_motor.angle(), "right", right_motor.angle())
 
 def correctRotation(distance):
   left_motor_degrees_remaining = abs(left_motor.angle()) - distanceToAngle(distance)

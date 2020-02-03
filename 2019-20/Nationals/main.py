@@ -8,6 +8,8 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
+import sys
+
 import movement, missions
 
 # test beeps
@@ -28,22 +30,29 @@ brick.display.text(str(brick.battery.voltage()) + "mV")
 
 ########## TESTING ##########
 
-# missions.Mission12.brown()
+#movement.move(0,-400,1000)
+#movement.move(0,400,1000)
+#missions.Mission12.brown()
 missions.Mission9()
-# missions.Mission2()
+#missions.Mission2()
 # movement.move(-10, 0, 54)
+# movement.move(10, 0, 360)
 
 #############################
 
-exit()
+# sys.exit()
 
+"""
 # use brick buttons & a colour sensor to choose missions
 colour_sensor = ColorSensor(Port.S3)
 
+if colour_sensor.color() == Color.BLUE:
+  print("BLUE")
+
 while True:
   # wait until button is pressed
-  while not (any(brick.buttons())):
-    wait(10)
+  # while not (any(brick.buttons())):
+  #S  wait(10)
 
   ######## attachments that do only one mission (missions 1, 6 & 7) ########
 
@@ -99,3 +108,4 @@ while True:
       break
 
   ##########################################################################
+  """
