@@ -35,6 +35,37 @@ class Mission2:
     movement.move(-90, 0, 90)
     movement.move(0, 200, 200)
 
+class Mission9_2:
+  def __init__(self):
+    Mission9_2.run()
+  def run():
+    # movement.move(0, 500, 1000)
+    movement.accelerate(0, 150, 0.01, 500, 10, False, False)
+    print("following")
+    line_follow = movement.lineFollow(True, 20, 9)
+    line_follow = 38.213
+    print("stopped")
+    # angle_to_turn = 33.5 if (line_follow < 32) else 35 if (line_follow < 34) else 33.5
+    #### angle_to_turn = -0.006 * line_follow ** 3 + 0.53 * line_follow ** 2 - 14.8* line_follow + 166
+    angle_to_turn = 36
+    # angle_to_turn = 32 if (0.6667*line_follow + 16.6667 < 32) else 39 if (0.6667*line_follow + 16.6667 > 39) else (0.6667*line_follow + 16.6667)
+    # angle_to_turn = 0.0074074 * line_follow ** 2 +-0.174074 * line_follow + 33.51852
+    # Working values: Value = 38.213, Turning = 39.57189919241802
+    movement.move(0, 5, -9)
+    movement.move(-10, 0, angle_to_turn)
+    movement.move(0, 150, 465)
+    movement.move(10, 0, 32)
+    movement.move(0, 50, 80)
+    movement.move(10, 0, 35)
+    movement.move(0, -50, 70)
+    movement.move(20, 0, 30)
+    movement.move(0, 150, 250)
+    movement.move(0, -150, 100)
+    movement.move(-10, 0, 70)
+    movement.move(0, -70, 600)
+    movement.move(-50, 0, 15)
+    movement.move(0, -150, 700)
+
 class Mission9:
   def __init__(self):
     Mission9.run()

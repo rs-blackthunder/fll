@@ -74,6 +74,7 @@ def lineFollow(forward: bool, threshold, caller: int):
   derivative = 0
   kp = 0.6
   ki = 0.02
+
   kd = 0.001
   perfect_steering = 0
   left_motor.reset_angle(0)
