@@ -32,10 +32,11 @@ brick.display.text(str(brick.battery.voltage()) + "mV")
 
 #movement.move(0,-400,1000)
 #movement.move(0,400,1000)
-missions.Mission12.red()
+#missions.Mission12.red()
 #missions.Mission9()
-#missions.Mission9_2()
+missions.Mission2()
 #missions.Mission2()
+#missions.Mission1()
 # movement.move(-10, 0, 54)
 # movement.move(10, 0, 360)
 
@@ -44,6 +45,7 @@ missions.Mission12.red()
 # sys.exit()
 
 # A better way to select missions than the colour sensor that may not work in different environments.
+"""
 selecting = True
 
 while selecting:
@@ -79,23 +81,20 @@ while selecting:
     selecting = False
 
 
-"""
+
 # use brick buttons & a colour sensor to choose missions
 colour_sensor = ColorSensor(Port.S3)
-
-if colour_sensor.color() == Color.BLUE:
-  print("BLUE")
-
 while True:
   # wait until button is pressed
-  # while not (any(brick.buttons())):
-  #S  wait(10)
+  while not (any(brick.buttons())):
+    wait(10)
 
   ######## attachments that do only one mission (missions 1, 6 & 7) ########
 
   if colour_sensor.color() == Color.RED:
     # display mission numbers so we know what has been detected
     brick.display.text(str("Missions 1, 6, 7 & 8"), (60, 50))
+    print("Red")
     # wait until button is pressed
     while not (any(brick.buttons())):
       wait(10)
@@ -140,7 +139,7 @@ while True:
     if Button.LEFT in brick.buttons():
       missions.Mission2()
     elif Button.RIGHT in brick.buttons():
-      missions.Mission9()
+      missions.Mission9_2()
     elif Button.MIDDLE in brick.buttons():  # in case colour sensor detects wrong colour
       break
 

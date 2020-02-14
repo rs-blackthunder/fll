@@ -11,6 +11,28 @@ def resetAngles():
   left_attachment.reset_angle(0)
   right_attachment.reset_angle(0)
 
+class Mission1:
+  def __init__(self):
+    Mission1.run()
+  def run():
+    left_colour_sensor = ColorSensor(Port.S1)
+    right_colour_sensor = ColorSensor(Port.S2)
+    # movement.move(0, 500, 1000)
+    left_attachment.run_angle(30, 30, Stop.BRAKE, False)
+    right_attachment.run_angle(30, 30, Stop.BRAKE, False)
+    movement.accelerate(0, 150, 0.01, 500, 10, False, False)
+    print("following")
+    line_follow = movement.lineFollow(True, 32, 9)
+    movement.move(-10, 0, 65)
+    while left_colour_sensor.color != Color.BLACK or right_colour_sensor.color != Color.BLACK:
+      movement.move(0, 10, 5)
+    line_follow = movement.lineFollow(True, 1, 9)
+    movement.move(0, 150, 300)
+
+
+    line_follow = 60
+    print("stopped")
+
 class Mission2:
   def __init__(self):
     Mission2.run()
@@ -22,7 +44,7 @@ class Mission2:
     movement.accelerate(150, 0, 0.01, 84, 10, True, False)
     resetAngles()
     wait(1500)
-    angle_to_turn = 222
+    angle_to_turn = 221.7
     for i in range(2):
       left_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, False)
       right_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, True)
@@ -129,6 +151,7 @@ class Mission12:
     movement.accelerate(0, -150, 0.001, 150, 10, False, False)
     movement.move(0, -150, 1000)
   def red():
+    # make it go a bit further.
     value = 35
     value = 22
     movement.move(-10, 0, value)
