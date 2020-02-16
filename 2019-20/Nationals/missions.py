@@ -37,14 +37,14 @@ class Mission2:
   def __init__(self):
     Mission2.run()
   def run():
-    movement.move(10, 0, 37.5)
+    movement.move(10, 0, 40)
     movement.move(0, 100, 430)
-    movement.move(-10, 0, 38.5)
-    movement.accelerate(0, 150, 0.01, 100, 10, False, False)
-    movement.accelerate(150, 0, 0.01, 84, 10, True, False)
+    movement.move(-10, 0, 40.9)
+    movement.accelerate(0, 135, 0.01, 98.5, 10, False, False)
+    movement.accelerate(135, 0, 0.01, 83, 10, True, False)
     resetAngles()
-    wait(1500)
-    angle_to_turn = 221.7
+    wait(2200)
+    angle_to_turn = 221.125
     for i in range(2):
       left_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, False)
       right_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, True)
@@ -72,7 +72,7 @@ class Mission9_2:
     # angle_to_turn = 33.5 if (line_follow < 32) else 35 if (line_follow < 34) else 33.5
     #### angle_to_turn = -0.006 * line_follow ** 3 + 0.53 * line_follow ** 2 - 14.8* line_follow + 166
     angle_to_turn = 34
-    angle_to_turn = 31.5
+    angle_to_turn = 30
     # angle_to_turn = 32 if (0.6667*line_follow + 16.6667 < 32) else 39 if (0.6667*line_follow + 16.6667 > 39) else (0.6667*line_follow + 16.6667)
     # angle_to_turn = 0.0074074 * line_follow ** 2 +-0.174074 * line_follow + 33.51852
     # Working values: Value = 38.213, Turning = 39.57189919241802
@@ -89,12 +89,14 @@ class Mission9_2:
     movement.move(0, -150, 50)'''
     left_attachment.run_angle(340, 340, Stop.BRAKE, False)
     right_attachment.run_angle(340, 340, Stop.BRAKE, False)
-    movement.move(-20, 0, 110)
+    movement.move(-20, 0, 100)
     movement.move(0, -300, 400)
-    movement.move(-10, 0, 15)
+    movement.move(-10, 0, 20)
     movement.move(0, -300, 300)
     movement.move(50, 0, 45)
     movement.move(0, -150, 700)
+    movement.move(50, 0, 30)
+    movement.move(0, -150, 1500)
 
 class Mission9:
   def __init__(self):
@@ -147,7 +149,7 @@ class Mission12:
     
     movement.accelerate(0, 150, 0.001, 250, 7, False, False)
     movement.move(0, 150, 540)
-    movement.accelerate(150, 0, 0.001, 300, 4, True, False)
+    movement.accelerate(150, 0, 0.001, 292, 4, True, False)
     movement.accelerate(0, -150, 0.001, 150, 10, False, False)
     movement.move(0, -150, 1000)
   def red():
@@ -157,7 +159,7 @@ class Mission12:
     movement.move(-10, 0, value)
     movement.accelerate(0, 200, 0.001, 260, 7, False, False)
     movement.move(0, 200, 150)
-    movement.accelerate(200, 0, 0.001, 300, 4, True, False)
+    movement.accelerate(200, 0, 0.001, 315, 4, True, False)
     movement.accelerate(0, -200, 0.001, 150, 10, False, False)
     movement.move(0, -200, 600)
   def white():
