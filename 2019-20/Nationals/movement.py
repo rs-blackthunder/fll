@@ -8,17 +8,17 @@ from pybricks.parameters import (Port, Stop, Direction)
 from pybricks.tools import print, wait, StopWatch
 from pybricks.robotics import DriveBase
 
-def angleToDistance(angle):
+def angleToDistance(angle): # Function that returns the distance when the wheels are moved by x degrees
   return angle / 360 * 196.035381584
 
-def distanceToAngle(distance):
+def distanceToAngle(distance): # Function that returns the angle by which the wheels need to be moved to move x mm
   return distance * 360 / 196.035381584
 
-def resetAngles():
+def resetAngles(): # Resets the angles of both motors to 0
   left_motor.reset_angle(0)
   right_motor.reset_angle(0)
 
-def accelerate(start_power, final_power, delay, distance, speed_increment, stop: bool, correct: bool):
+def accelerate(start_power, final_power, delay, distance, speed_increment, stop: bool, correct: bool): # Function to accelerate/decelerate from x vel to y vel at z mm/s^2
   resetAngles()
   current_power = start_power
   if speed_increment == 0:
