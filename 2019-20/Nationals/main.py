@@ -46,7 +46,7 @@ while True: # Allows the program to keep running, so no time is wasted running t
     wait(10)
   ### Attachments that do more than one mission (missions 2/9, 3/4 & 12) ###
   # Mission 12
-  elif colour_sensor.color() == Color.GREEN:
+  if colour_sensor.color() == Color.GREEN:
     # Display mission number so we know what has been detected
     print("Green")
     # Clockwise is probable order (i.e. UP -> RIGHT -> DOWN -> LEFT)
