@@ -79,7 +79,7 @@ while True: # Allows the program to keep running, so no time is wasted running t
       missions.Mission2()
     elif Button.DOWN in brick.buttons():
       brick.display.clear()
-      brick.display.text(str("Mission 7/8/9"), (60, 50))
+      brick.display.text(str("Mission 6/7/9"), (60, 50))
       missions.Mission9_2()
      elif Button.LEFT in brick.buttons():
       pass # Mission 1
