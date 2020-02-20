@@ -44,7 +44,6 @@ colour_sensor = ColorSensor(Port.S3)
 while True: # Allows the program to keep running, so no time is wasted running the program itself
   while not (any(brick.buttons())): # Waiting until a button is pressed
     wait(10)
-  ### Attachments that do more than one mission (missions 2/9, 3/4 & 12) ###
   # Mission 12
   if colour_sensor.color() == Color.BLUE:
     # Display mission number so we know what has been detected
@@ -69,7 +68,7 @@ while True: # Allows the program to keep running, so no time is wasted running t
     elif Button.CENTER in brick.buttons():  # In case colour sensor detects wrong colour
       break
 
-  # Mission 1,2 & 7/8/9
+  # Mission 1,2 & 6/7/9
   elif colour_sensor.color() == Color.RED:
     # Display mission numbers so we know what has been detected
     print("Red")
