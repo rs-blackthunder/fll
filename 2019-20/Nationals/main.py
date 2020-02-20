@@ -38,26 +38,12 @@ brick.display.text(str("Blue ^ Crane"), (60, 40))
 brick.display.text(str("< Red Brown >"), (60, 50))
 brick.display.text(str("White V Beams"), (60, 60))
 
-# Using the colour sensor and brick buttons to choose missions - allows faster mission selecting.
+# Using the colour sensor and brick buttons to choose missions - allows faster and easier mission selecting.
 colour_sensor = ColorSensor(Port.S3)
 
-while True: # Allows the program to keep running, so that it does not have to be run after every mission.
+while True: # Allows the program to keep running, so no time is wasted running the program itself
   while not (any(brick.buttons())): # Waiting until a button is pressed
     wait(10)
-    
-  ### Attachments that do only one mission (missions 1, 6 & 7) ###
-  if colour_sensor.color() == Color.BLUE:
-    # Display mission numbers so we know what has been detected
-    brick.display.text(str("Missions 1, 6, 7 & 8"), (60, 50))
-    print("Blue")
-    # Wait until button is pressed
-    while not (any(brick.buttons())):
-      wait(10)
-    if Button.LEFT in brick.buttons():
-      pass # Mission 1
-    elif Button.CENTER in brick.buttons():  # In case colour sensor detects wrong colour
-      break
-      
   ### Attachments that do more than one mission (missions 2/9, 3/4 & 12) ###
   # Mission 12
   elif colour_sensor.color() == Color.GREEN:
@@ -83,7 +69,7 @@ while True: # Allows the program to keep running, so that it does not have to be
     elif Button.CENTER in brick.buttons():  # In case colour sensor detects wrong colour
       break
 
-  # Mission 2 & 7/8/9
+  # Mission 1,2 & 7/8/9
   elif colour_sensor.color() == Color.RED:
     # Display mission numbers so we know what has been detected
     print("Red")
@@ -95,5 +81,7 @@ while True: # Allows the program to keep running, so that it does not have to be
       brick.display.clear()
       brick.display.text(str("Mission 7/8/9"), (60, 50))
       missions.Mission9_2()
+     elif Button.LEFT in brick.buttons():
+      pass # Mission 1
     elif Button.CENTER in brick.buttons():  # In case colour sensor detects wrong colour
       break
