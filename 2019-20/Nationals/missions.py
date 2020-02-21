@@ -203,7 +203,7 @@ class Mission12: #Class to store the runs for Mission 12
     value = 38
     movement.move(0, 50, 200) # Using the move function we declared in movement as it is more accurate then ev3's movement.
     movement.move(-30, 0, value)
-    movement.accelerate(0, 150, 0.001, 250, 7, False, False) # Function to accelerate/decelerate from x to y vel at z m/s^2
+    movement.accelerate(0, 150, 0.001, 250, 7, False, False) # Function to accelerate/decelerate from x to y vel at z mm/s^2
     movement.move(0, 150, 540)
     movement.accelerate(150, 0, 0.001, 292, 4, True, False) # Decelerating to allow greater control over the blocks and to allow a less change in delta v when stopping.
     movement.accelerate(0, -150, 0.001, 150, 10, False, False) 
@@ -213,7 +213,7 @@ class Mission12: #Class to store the runs for Mission 12
     value = 35 # Value to store the turning amount, soft-coded to make it easier to change values.
     value = 21
     movement.move(-10, 0, value)
-    movement.accelerate(0, 200, 0.001, 260, 7, False, False) # Running the function to accelerate from x vel to y vel at z m/s^2
+    movement.accelerate(0, 200, 0.001, 260, 7, False, False) # Running the function to accelerate from x vel to y vel at z mm/s^2
     movement.move(0, 200, 150) # 0 steering, hence there is straight movement.
     movement.accelerate(200, 0, 0.001, 315, 4, True, False) # Decelerating back to 0, i.e. to the circle where they must be placed
     movement.accelerate(0, -200, 0.001, 150, 10, False, False) # Accelerating on the way back.
