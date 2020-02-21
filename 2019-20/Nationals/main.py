@@ -45,7 +45,7 @@ while True: # Allows the program to keep running, so no time is wasted running t
   while not (any(brick.buttons())): # Waiting until a button is pressed
     wait(10)
   # Mission 12
-  if colour_sensor.color() == Color.BLUE:
+  if colour_sensor.color() == Color.GREEN:
     # Display mission number so we know what has been detected
     print("Blue")
     # Clockwise is probable order (i.e. UP -> RIGHT -> DOWN -> LEFT)
@@ -79,8 +79,11 @@ while True: # Allows the program to keep running, so no time is wasted running t
     elif Button.DOWN in brick.buttons():
       brick.display.clear()
       brick.display.text(str("Mission 6/7/9"), (60, 50))
-      missions.Mission9_2()
+      missions.Mission9()
      elif Button.LEFT in brick.buttons():
       pass # Mission 1
     elif Button.CENTER in brick.buttons():  # In case colour sensor detects wrong colour
       break
+  brick.display.text(str("Blue ^ Crane"), (60, 40))
+  brick.display.text(str("< Red Brown >"), (60, 50))
+  brick.display.text(str("White V Beams"), (60, 60))

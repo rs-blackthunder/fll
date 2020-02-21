@@ -33,7 +33,7 @@ class Mission1:
     line_follow = 60
     print("stopped")
 
-class Mission2:
+class Mission2_old:
   def __init__(self):
     Mission2.run()
   def run():
@@ -57,9 +57,34 @@ class Mission2:
     movement.move(-90, 0, 90)
     movement.move(0, 200, 200)
 
-class Mission9_2:
+class Mission2:
   def __init__(self):
-    Mission9_2.run()
+    Mission2.run()
+  def run():
+    movement.move(10, 0, 36)
+    #movement.move(0, 200, 430)
+    movement.accelerate(0, 200, 0.01, 400, 10, False, False)
+    movement.move(-15, 0, 41.5)
+    movement.accelerate(0, 135, 0.01, 100, 9, False, False)
+    movement.accelerate(135, 0, 0.01, 81.9, 9, True, False)
+    resetAngles()
+    wait(2200)
+    angle_to_turn = 221.125
+    for i in range(2):
+      left_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, False)
+      right_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, True)
+      left_attachment.run_angle(-300, angle_to_turn, Stop.BRAKE, False)
+      if i != 1:
+        right_attachment.run_angle(-300, angle_to_turn, Stop.BRAKE, True)
+      else:
+        right_attachment.run_angle(-300, angle_to_turn, Stop.BRAKE, False)
+    movement.move(0, -200, 100)
+    movement.move(-90, 0, 90)
+    movement.move(0, 200, 200)
+
+class Mission9:
+  def __init__(self):
+    Mission9.run()
   def run():
     # movement.move(0, 500, 1000)
     left_attachment.run_angle(30, 30, Stop.BRAKE, False)
@@ -78,29 +103,60 @@ class Mission9_2:
     # Working values: Value = 38.213, Turning = 39.57189919241802
     movement.move(-10, 0, angle_to_turn)
     movement.move(0, 150, 465)
-    movement.move(10, 0, 29)
-    movement.move(0, 50, 92)
-    movement.move(10, 0, 35)
-    movement.move(0, -50, 70)
-    movement.move(20, 0, 30)
-    movement.move(0, 150, 178)
-    movement.move(0, -150, 90)
-    ''''movement.move(10, 0, 20)
-    movement.move(0, -150, 50)'''
-    left_attachment.run_angle(340, 340, Stop.BRAKE, False)
-    right_attachment.run_angle(340, 340, Stop.BRAKE, False)
-    movement.move(-20, 0, 100)
-    movement.move(0, -300, 400)
-    movement.move(-10, 0, 20)
-    movement.move(0, -300, 300)
-    movement.move(50, 0, 45)
-    movement.move(0, -150, 700)
-    movement.move(50, 0, 30)
-    movement.move(0, -150, 1500)
+    Drift = False
+    Old = False
+    if Old:
+      movement.move(10, 0, 28)
+      movement.move(0, 50, 93)
+      movement.move(20, 0, 33)
+    if not Old and Drift:
+      left_attachment.run_angle(70, 70, Stop.BRAKE, False)
+      right_attachment.run_angle(70, 70, Stop.BRAKE, False)
+      movement.move(10, 0, 20)
+      movement.move(0, 50, 93)
+      movement.move(5, 0, 10)
+      movement.move(0, -50, 50)
+      movement.move(5, 0, 10)
+      movement.move(0, 50, 50)
+      movement.move(20, 0, 33)
+    if not Old and not Drift:
+      left_attachment.run_angle(70, 70, Stop.BRAKE, False)
+      right_attachment.run_angle(70, 70, Stop.BRAKE, False)
+      movement.move(10, 0, 12)
+      movement.move(0, 50, 30)
+      movement.move(14, 0, 14)
+      movement.move(0, -50, 28)
+      movement.move(10, 0, 7)
+      movement.move(0, 50, 80)
+      movement.move(20, 0, 30)
 
-class Mission9:
+    movement.move(0, -50, 100)
+    movement.move(20, 0, 30)
+    movement.move(0, 150, 190)
+    movement.move(0, -150, 100)
+    '''movement.move(10, 0, 20)
+    movement.move(0, -150, 50)'''
+    left_attachment.run_angle(350, 350, Stop.BRAKE, False)
+    right_attachment.run_angle(350, 350, Stop.BRAKE, False)
+    if not Old and Drift:
+      movement.move(-20, 0, 95)
+    if not Old and not Drift:
+      movement.move(-20, 0, 83.5)
+    #movement.5accelerate(0, -300, 0.001, 150, 10, False, False)
+    '''movement.move(0, -150, 150)
+    movement.move(-20, 0, 30)
+    movement.move(0, -150, 125)
+    movement.move(20, 0, 40)
+    movement.move(0, -300, 400)
+    movement.move(20, 0, 30)
+    movement.move(0, -300, 800)'''
+    movement.move(0, -300, 600)
+    movement.move(20, 0, 30)
+    movement.move(0, -300, 1500)
+
+class Mission9_old:
   def __init__(self):
-    Mission9.run()
+    Mission9_old.run()
   def run():
     # movement.move(0, 500, 1000)
     movement.accelerate(0, 150, 0.01, 500, 10, False, False)
@@ -151,26 +207,26 @@ class Mission12: #Class to store the runs for Mission 12
     movement.move(0, 150, 540)
     movement.accelerate(150, 0, 0.001, 292, 4, True, False) # Decelerating to allow greater control over the blocks and to allow a less change in delta v when stopping.
     movement.accelerate(0, -150, 0.001, 150, 10, False, False) 
-    movement.move(0, -150, 1000)
+    movement.move(0, -300, 1000)
   def red(): # Function to store the run of Mission 12, red. 
     # make it go a bit further.
     value = 35 # Value to store the turning amount, soft-coded to make it easier to change values.
-    value = 22
+    value = 21
     movement.move(-10, 0, value)
     movement.accelerate(0, 200, 0.001, 260, 7, False, False) # Running the function to accelerate from x vel to y vel at z m/s^2
     movement.move(0, 200, 150) # 0 steering, hence there is straight movement.
     movement.accelerate(200, 0, 0.001, 315, 4, True, False) # Decelerating back to 0, i.e. to the circle where they must be placed
     movement.accelerate(0, -200, 0.001, 150, 10, False, False) # Accelerating on the way back.
-    movement.move(0, -200, 600) # Movement.move also allows for negative movement, i.e. backwards movement for Returning back to base
+    movement.move(0, -300, 600) # Movement.move also allows for negative movement, i.e. backwards movement for Returning back to base
   def white():# Function to store the run of Mission 12, white. 
     value = 61 # Value to store the turning amount, soft-coded to make it easier to change values.
     value = 48
-    value = 52
-    movement.move(10, 0, value) # Movement.move taking the following input parameters (steering, speed, amount)
+    value = 50
+    movement.move(20, 0, value) # Movement.move taking the following input parameters (steering, speed, amount)
     movement.accelerate(0, 200, 0.001, 220, 7, False, False) # Accelerating to allow greater control over the blocks
     movement.accelerate(200, 0, 0.001, 210, 5, False, False) 
     movement.accelerate(0, -200, 0.001, 100, 10, False, False) # Accelerating back, allows for smooth movement, to not displace the blocks.
-    movement.move(0, -200, 340)
+    movement.move(0, -300, 340)
   def blue(): # Function to store the run of Mission 12, blue. 
     movement.accelerate(0, 200, 0.001, 200, 7, False, False) # Accelerating to allow greater control over the blocks
     movement.accelerate(200, 0, 0.001, 200, 5, False, False) 
