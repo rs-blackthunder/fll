@@ -36,12 +36,12 @@ class Mission2: # Class to contain the run for Mission 2 (Probably not run)
   def __init__(self): # Running the code when the class is called.
     Mission2.run()
   def run(): # Function to store the code for the run of Mission 2
-    movement.move(10, 0, 36) # Using movement.move as it is more accurate than EV3 move()
+    movement.move(10, 0, 38) # Using movement.move as it is more accurate than EV3 move()
     #movement.move(0, 200, 430)
     movement.accelerate(0, 200, 0.01, 400, 10, False, False) # Accelerating in order to have greater control
     movement.move(-15, 0, 41.5)
     movement.accelerate(0, 135, 0.01, 100, 9, False, False)
-    movement.accelerate(135, 0, 0.01, 81.9, 9, True, False)
+    movement.accelerate(135, 0, 0.01, 83, 9, True, False)
     resetAngles()
     wait(2200)
     angle_to_turn = 221.125 # Soft-coded variables to make it easier to change movement values. 
@@ -122,7 +122,7 @@ class Mission12: #Class to store the runs for Mission 12
     movement.move(30, 0, 30) # Turning to ensure fastest return to base
     movement.accelerate(0, -150, 0.001, 150, 10, False, False) 
     movement.move(0, -1000, 3000)
-    movement.move(90, -1000, 1000) # Fitting into base
+    movement.move(100, -300, 200) # Fitting into base
 
   def red(): # Function to store the run of Mission 12, red. 
     # make it go a bit further.
