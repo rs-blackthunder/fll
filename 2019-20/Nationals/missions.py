@@ -1,3 +1,4 @@
+# Importing the required EV3 modules and libraries
 from pybricks import ev3brick as brick
 from pybricks.ev3devices import (Motor, TouchSensor, ColorSensor,
                                  InfraredSensor, UltrasonicSensor, GyroSensor)
@@ -5,14 +6,14 @@ from pybricks.parameters import (Port, Stop, Direction, Button, Color,
                                  SoundFile, ImageFile, Align)
 from pybricks.tools import print, wait, StopWatch
 
-import movement
+import movement # Importing the movement script which contains function that we use for accurate movement around the board.
 
-def resetAngles():
+def resetAngles(): # Function to reset angles of both Medium Motors
   left_attachment.reset_angle(0)
   right_attachment.reset_angle(0)
 
-class Mission1:
-  def __init__(self):
+class Mission1: # Class to contain the run for Mission 2
+  def __init__(self): # Running the code when the class is called.
     Mission1.run()
   def run():
     left_colour_sensor = ColorSensor(Port.S1)
@@ -57,19 +58,19 @@ class Mission2_old:
     movement.move(-90, 0, 90)
     movement.move(0, 200, 200)
 
-class Mission2:
-  def __init__(self):
+class Mission2: # Class to contain the run for Mission 2
+  def __init__(self): # Running the code when the class is called.
     Mission2.run()
-  def run():
-    movement.move(10, 0, 36)
+  def run(): # Function to store the code for the run of Mission 2
+    movement.move(10, 0, 36) # Using movement.move as it is more accurate than EV3 move()
     #movement.move(0, 200, 430)
-    movement.accelerate(0, 200, 0.01, 400, 10, False, False)
+    movement.accelerate(0, 200, 0.01, 400, 10, False, False) # Accelerating in order to have greater control
     movement.move(-15, 0, 41.5)
     movement.accelerate(0, 135, 0.01, 100, 9, False, False)
     movement.accelerate(135, 0, 0.01, 81.9, 9, True, False)
     resetAngles()
     wait(2200)
-    angle_to_turn = 221.125
+    angle_to_turn = 221.125 # Soft-coded variables to make it easier to change movement values. 
     for i in range(2):
       left_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, False)
       right_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, True)
@@ -82,18 +83,18 @@ class Mission2:
     movement.move(-90, 0, 90)
     movement.move(0, 200, 200)
 
-class Mission9:
-  def __init__(self):
+class Mission9: # Class to contain the run for Mission 9
+  def __init__(self): # Running the code when the class is called.
     Mission9.run()
-  def run():
+  def run(): # Function to store the code for the run of Mission 9
     # movement.move(0, 500, 1000)
     left_attachment.run_angle(30, 30, Stop.BRAKE, False)
     right_attachment.run_angle(30, 30, Stop.BRAKE, False)
     movement.accelerate(0, 150, 0.01, 500, 10, False, False)
-    print("following")
-    line_follow = movement.lineFollow(True, 20, 9)
+    print("following") # Outputting the state of the robot to the console.
+    line_follow = movement.lineFollow(True, 20, 9) # Line-following as it is more accurate than straight moving.
     line_follow = 38.213
-    print("stopped")
+    print("stopped") # Outputting the state of the robot to the console.
     # angle_to_turn = 33.5 if (line_follow < 32) else 35 if (line_follow < 34) else 33.5
     #### angle_to_turn = -0.006 * line_follow ** 3 + 0.53 * line_follow ** 2 - 14.8* line_follow + 166
     angle_to_turn = 34
