@@ -12,7 +12,7 @@ def resetAngles(): # Function to reset angles of both Medium Motors
   left_attachment.reset_angle(0)
   right_attachment.reset_angle(0)
 
-class Mission1: # Class to contain the run for Mission 2
+class Mission1: # Class to contain the run for Mission 1 (Not run)
   def __init__(self): # Running the code when the class is called.
     Mission1.run()
   def run():
@@ -29,36 +29,10 @@ class Mission1: # Class to contain the run for Mission 2
       movement.move(0, 10, 5)
     line_follow = movement.lineFollow(True, 1, 9)
     movement.move(0, 150, 300)
-
-
     line_follow = 60
     print("stopped")
 
-class Mission2_old:
-  def __init__(self):
-    Mission2.run()
-  def run():
-    movement.move(10, 0, 40)
-    movement.move(0, 100, 430)
-    movement.move(-10, 0, 40.9)
-    movement.accelerate(0, 135, 0.01, 98.5, 10, False, False)
-    movement.accelerate(135, 0, 0.01, 83, 10, True, False)
-    resetAngles()
-    wait(2200)
-    angle_to_turn = 221.125
-    for i in range(2):
-      left_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, False)
-      right_attachment.run_angle(300, angle_to_turn, Stop.BRAKE, True)
-      left_attachment.run_angle(-300, angle_to_turn, Stop.BRAKE, False)
-      if i != 1:
-        right_attachment.run_angle(-300, angle_to_turn, Stop.BRAKE, True)
-      else:
-        right_attachment.run_angle(-300, angle_to_turn, Stop.BRAKE, False)
-    movement.move(0, -200, 100)
-    movement.move(-90, 0, 90)
-    movement.move(0, 200, 200)
-
-class Mission2: # Class to contain the run for Mission 2
+class Mission2: # Class to contain the run for Mission 2 (Probably not run)
   def __init__(self): # Running the code when the class is called.
     Mission2.run()
   def run(): # Function to store the code for the run of Mission 2
@@ -87,115 +61,52 @@ class Mission9: # Class to contain the run for Mission 9
   def __init__(self): # Running the code when the class is called.
     Mission9.run()
   def run(): # Function to store the code for the run of Mission 9
-    # movement.move(0, 500, 1000)
-    left_attachment.run_angle(30, 30, Stop.BRAKE, False)
+    left_attachment.run_angle(30, 30, Stop.BRAKE, False) # Moving platform up a bit
     right_attachment.run_angle(30, 30, Stop.BRAKE, False)
     movement.accelerate(0, 150, 0.01, 500, 10, False, False)
     print("following") # Outputting the state of the robot to the console.
     line_follow = movement.lineFollow(True, 20, 9) # Line-following as it is more accurate than straight moving.
     line_follow = 38.213
     print("stopped") # Outputting the state of the robot to the console.
-    # angle_to_turn = 33.5 if (line_follow < 32) else 35 if (line_follow < 34) else 33.5
-    #### angle_to_turn = -0.006 * line_follow ** 3 + 0.53 * line_follow ** 2 - 14.8* line_follow + 166
-    angle_to_turn = 34
     angle_to_turn = 30
-    # angle_to_turn = 32 if (0.6667*line_follow + 16.6667 < 32) else 39 if (0.6667*line_follow + 16.6667 > 39) else (0.6667*line_follow + 16.6667)
-    # angle_to_turn = 0.0074074 * line_follow ** 2 +-0.174074 * line_follow + 33.51852
-    # Working values: Value = 38.213, Turning = 39.57189919241802
-    movement.move(-10, 0, angle_to_turn)
+    movement.move(-10, 0, angle_to_turn) # Turns when line follow is done
     movement.move(0, 150, 465)
-    Drift = False
-    Old = False
-    if Old:
-      movement.move(10, 0, 28)
-      movement.move(0, 50, 93)
-      movement.move(20, 0, 33)
-    if not Old and Drift:
-      left_attachment.run_angle(70, 70, Stop.BRAKE, False)
+    Drift = False # Drift affects the direction of the bot
+    if Drift:
+      left_attachment.run_angle(70, 70, Stop.BRAKE, False) # Platform moves up so moment increases (m=fxd)
       right_attachment.run_angle(70, 70, Stop.BRAKE, False)
       movement.move(10, 0, 20)
       movement.move(0, 50, 93)
-      movement.move(5, 0, 10)
+      movement.move(5, 0, 10) # Move middle beam
       movement.move(0, -50, 50)
-      movement.move(5, 0, 10)
+      movement.move(5, 0, 10) # Move right beams
       movement.move(0, 50, 50)
       movement.move(20, 0, 33)
-    if not Old and not Drift:
+    if not Drift:
       left_attachment.run_angle(70, 70, Stop.BRAKE, False)
       right_attachment.run_angle(70, 70, Stop.BRAKE, False)
       movement.move(10, 0, 13)
       movement.move(0, 50, 30)
-      movement.move(14, 0, 14)
+      movement.move(14, 0, 14) # Move middle beam
       movement.move(0, -50, 28)
-      movement.move(10, 0, 7)
+      movement.move(10, 0, 7) # Move right beams
       movement.move(0, 50, 80)
       movement.move(20, 0, 30)
 
     movement.move(0, -50, 100)
     movement.move(20, 0, 30)
-    movement.move(0, 150, 190)
+    movement.move(0, 150, 190) # Run into swings
     movement.move(0, -150, 100)
-    '''movement.move(10, 0, 20)
-    movement.move(0, -150, 50)'''
     left_attachment.run_angle(350, 350, Stop.BRAKE, False)
     right_attachment.run_angle(350, 350, Stop.BRAKE, False)
-    if not Old and Drift:
+    # Pushing the house downwards & leftwards
+    if Drift:
       movement.move(-20, 0, 95)
-    if not Old and not Drift:
+    if not Drift:
       movement.move(-20, 0, 83.5)
-    #movement.5accelerate(0, -300, 0.001, 150, 10, False, False)
-    '''movement.move(0, -150, 150)
-    movement.move(-20, 0, 30)
-    movement.move(0, -150, 125)
-    movement.move(20, 0, 40)
-    movement.move(0, -300, 400)
+    movement.move(0, -500, 600) # Into traffic jam
     movement.move(20, 0, 30)
-    movement.move(0, -300, 800)'''
-    movement.move(0, -300, 600)
-    movement.move(20, 0, 30)
-    movement.move(0, -300, 1500)
-
-class Mission9_old:
-  def __init__(self):
-    Mission9_old.run()
-  def run():
-    # movement.move(0, 500, 1000)
-    movement.accelerate(0, 150, 0.01, 500, 10, False, False)
-    print("following")
-    line_follow = movement.lineFollow(True, 20, 9)
-    line_follow = 38.213
-    print("stopped")
-    left_attachment.run_angle(300, 300, Stop.BRAKE, False)
-    right_attachment.run_angle(300, 300, Stop.BRAKE, False)
-    # angle_to_turn = 33.5 if (line_follow < 32) else 35 if (line_follow < 34) else 33.5
-    #### angle_to_turn = -0.006 * line_follow ** 3 + 0.53 * line_follow ** 2 - 14.8* line_follow + 166
-    angle_to_turn = 43
-    # angle_to_turn = 32 if (0.6667*line_follow + 16.6667 < 32) else 39 if (0.6667*line_follow + 16.6667 > 39) else (0.6667*line_follow + 16.6667)
-    # angle_to_turn = 0.0074074 * line_follow ** 2 +-0.174074 * line_follow + 33.51852
-    # Working values: Value = 38.213, Turning = 39.57189919241802
-    movement.move(0, 5, -9)
-    movement.move(-10, 0, angle_to_turn)
-    movement.move(0, 150, 465)
-    movement.move(10, 0, 29.5)
-    movement.move(0, 50, 110)
-    left_attachment.run_angle(- 300, 205, Stop.BRAKE, False)
-    right_attachment.run_angle(-300, 205, Stop.BRAKE, False)
-    movement.move(10, 0, 25)
-    resetAngles()
-    left_attachment.run_angle(300, 300, Stop.BRAKE, False)
-    right_attachment.run_angle(300, 300, Stop.BRAKE, True)
-    movement.move(-10, 0, 55)
-    movement.move(10, 0, 50)
-    left_attachment.run_angle(-300, 395, Stop.BRAKE, False)
-    right_attachment.run_angle(-300, 395, Stop.BRAKE, True)
-    movement.move(0, -150, 200)
-    movement.move(10, 0, 20)
-    movement.move(0, 150, 350)
-    movement.move(0, -150, 100)
-    movement.move(-10, 0, 70)
-    movement.move(0, -150, 600)
-    movement.move(-10, 0, 15)
-    movement.move(0, -150, 700)
+    movement.move(0, -1000, 5000) # Into base
 
 class Mission12: #Class to store the runs for Mission 12
   # All the following subroutines have similar structure to make it easier for us to debug and make changes. 
@@ -207,8 +118,12 @@ class Mission12: #Class to store the runs for Mission 12
     movement.accelerate(0, 150, 0.001, 250, 7, False, False) # Function to accelerate/decelerate from x to y vel at z mm/s^2
     movement.move(0, 150, 540)
     movement.accelerate(150, 0, 0.001, 292, 4, True, False) # Decelerating to allow greater control over the blocks and to allow a less change in delta v when stopping.
+    movement.move(0, -300, 100)
+    movement.move(30, 0, 30) # Turning to ensure fastest return to base
     movement.accelerate(0, -150, 0.001, 150, 10, False, False) 
-    movement.move(0, -1000, 1500)
+    movement.move(0, -1000, 3000)
+    movement.move(90, -1000, 1000) # Fitting into base
+
   def red(): # Function to store the run of Mission 12, red. 
     # make it go a bit further.
     value = 35 # Value to store the turning amount, soft-coded to make it easier to change values.
@@ -218,7 +133,7 @@ class Mission12: #Class to store the runs for Mission 12
     movement.move(0, 200, 150) # 0 steering, hence there is straight movement.
     movement.accelerate(200, 0, 0.001, 315, 4, True, False) # Decelerating back to 0, i.e. to the circle where they must be placed
     movement.accelerate(0, -200, 0.001, 150, 10, False, False) # Accelerating on the way back.
-    movement.move(0, -1000, 1500) # Movement.move also allows for negative movement, i.e. backwards movement for Returning back to base
+    movement.move(0, -1000, 3000) # Movement.move also allows for negative movement, i.e. backwards movement for Returning back to base
   def white():# Function to store the run of Mission 12, white. 
     value = 61 # Value to store the turning amount, soft-coded to make it easier to change values.
     value = 48
@@ -227,12 +142,11 @@ class Mission12: #Class to store the runs for Mission 12
     movement.accelerate(0, 200, 0.001, 220, 7, False, False) # Accelerating to allow greater control over the blocks
     movement.accelerate(200, 0, 0.001, 210, 5, False, False) 
     movement.accelerate(0, -200, 0.001, 100, 10, False, False) # Accelerating back, allows for smooth movement, to not displace the blocks.
-    movement.move(0, -1000, 1500)
+    movement.move(0, -1000, 3000)
   def blue(): # Function to store the run of Mission 12, blue. 
     movement.accelerate(0, 200, 0.001, 200, 7, False, False) # Accelerating to allow greater control over the blocks
     movement.accelerate(200, 0, 0.001, 200, 5, False, False) 
-    movement.accelerate(0, -200, 0.001, 100, 10, False, False) 
-    movement.move(0, -300, 300) # Movement.move also allows for negative movement, i.e. backwards movement for Returning back to base
+    movement.move(0, -1000, 300) # Movement.move also allows for negative movement, i.e. backwards movement for Returning back to base
     movement.move(30, 0, 80)
     movement.move(0, -1000, 1500)
 
