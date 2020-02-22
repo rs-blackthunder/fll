@@ -122,7 +122,7 @@ class Mission12: #Class to store the runs for Mission 12
     movement.move(0, -300, 100)
     movement.move(30, 0, 30) # Turning to ensure fastest return to base
     movement.move(0, -1000, 3000)
-    movement.move(100, -300, 200) # Fitting into base
+    movement.move(100, -300, 170) # Fitting into base
 
   def red(): # Function to store the run of Mission 12, red. 
     # make it go a bit further.
