@@ -1,3 +1,4 @@
+"""
 #!/usr/bin/env pybricks-micropython
 # Importing the required EV3 modules and libraries
 from pybricks import ev3brick as brick
@@ -88,3 +89,9 @@ while True: # Allows the program to keep running, so no time is wasted running t
   brick.display.text(str("Blue ^ Crane"), (60, 40))
   brick.display.text(str("< Red Brown >"), (60, 50))
   brick.display.text(str("White V Beams"), (60, 60))
+"""
+left_colour_sensor = ColorSensor(Port.S1) # Ports of the sensors are given as a parameter.
+right_colour_sensor = ColorSensor(Port.S2)
+colour_sensor = ColorSensor(Port.S3) # Ports of the sensors are given as a parameter.
+while True:
+  print(left_colour_sensor.color(), right_colour_sensor.color(), colour_sensor.color())
